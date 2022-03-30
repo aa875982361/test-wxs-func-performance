@@ -1,0 +1,35 @@
+<wxs module="utils">
+var some_msg = "hello world";
+module.exports = {
+  msg : some_msg,
+  judgeSameParent: function(list, index){
+    if(index<1 || list.length <= index){
+      return false
+    }
+    return list[index-1].parentId === list[index].parentId
+  }
+}
+</wxs>
+<view class="intro">测试 wxs 调用函数传入数组的性能</view>
+<view>
+  <scroll-view
+    scroll-x
+    id="scrollView"
+    style="height: 300rpx;display: flex; background-color: gray;"
+    lower-threshold="300rpx"
+    bindscrolltolower="handleScrollToLower"
+  >
+    <view style="display: flex; flex-direction: row;">
+      <view 
+        wx:for="{{list}}" 
+        style="width: 200rpx;height: 200rpx;margin-top: 50rpx;  flex-shrink: 0;background-color: green;margin-right: 10rpx;" 
+        wx:for-index="idx" 
+        wx:for-item="item"
+        wx:key="idx"
+      >
+        <view wx:if="{{utils.judgeSameParent(list, idx)}}" style="width: 20rpx; height: 20rpx; background-color: greenyellow;"></view>
+        <view wx:if="{{utils.judgeSameParent(list, idx)}}" style="width: 20rpx; height: 20rpx; background-color: greenyellow;"></view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

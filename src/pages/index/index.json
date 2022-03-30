@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "wxsComp": "../wxsComp/wxsComp"
+  }
+}
